@@ -108,7 +108,7 @@ function InteractiveBG() {
           "radial-gradient(520px 520px at var(--mx) var(--my), rgba(0,0,0,0.75) 0%, transparent 62%)",
         WebkitMaskImage:
           "radial-gradient(520px 520px at var(--mx) var(--my), rgba(0,0,0,0.75) 0%, transparent 62%)",
-        background: "linear-gradien t(180deg, #ffffff, #f8fbff 50%, #f3f7ff 100%)",
+        background: "linear-gradient(180deg, #ffffff, #f8fbff 50%, #f3f7ff 100%)",
       }}>
       <div className="absolute inset-0" style={{
         opacity: 0,
@@ -646,7 +646,7 @@ function Footer() {
     >
       <div className="mx-auto max-w-2xl">
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Button asChild size="lg" className="bg-slateq-900 text-white hover:bg-slate-800">
+          <Button asChild size="lg" className="bg-slate-900 text-white hover:bg-slate-800">
             <a href="mailto:nicolexzha@gmail.com">
               <Mail className="mr-2 h-4 w-4" /> nicolexzha@gmail.com
             </a>
