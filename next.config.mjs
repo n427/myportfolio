@@ -1,11 +1,9 @@
-const repo = "portfolio";
-const onCI = process.env.GITHUB_ACTIONS === "true";
+const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
 export default {
-  output: "export",
-  images: { unoptimized: true },     // required on GH Pages
-  basePath: onCI ? `/${repo}` : "",
-  assetPrefix: onCI ? `/${repo}/` : "",
-  trailingSlash: true,
+  output: 'export',                 // writes static site to /out
+  basePath: isProd ? '/portfolio' : '',
+  images: { unoptimized: true },    // needed for static export
+  assetPrefix: isProd ? '/portfolio/' : undefined, // NEVER set in dev
 };
