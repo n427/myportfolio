@@ -163,7 +163,11 @@ function WaterPartVeil({
   React.useEffect(() => {
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d", { alpha: true })!;
-    let w = 0, h = 0, dpr = Math.max(1, window.devicePixelRatio || 1);
+    let w = 0, h = 0;
+    const dpr: number =
+    typeof window !== "undefined"
+      ? Math.min(Math.max((window.devicePixelRatio || 1), 1), 2)
+      : 1;
 
     const resize = () => {
       w = window.innerWidth; h = window.innerHeight;
