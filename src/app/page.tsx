@@ -22,46 +22,49 @@ import { Button } from "@/components/ui/button";
 
 import Image from "next/image";
 
+// NEW — static imports (these resolve to hashed files and respect assetPrefix/basePath)
+import profilePic from "@/public/profile1.jpg";
+import taggedImg   from "@/public/tagged.png";
+import jobflowImg  from "@/public/jobflow.png";
+import peekabooImg from "@/public/peekaboo.png";
+import produImg    from "@/public/produ.png";
+import vclImg      from "@/public/vcl.png";
+
 const PROJECTS = [
   {
     title: "Tagged — Weekly Photo Challenges",
     desc: "Social app with server-based tags, streaks, punishments, and a Yearbook archive.",
     tags: ["SwiftUI", "Firebase", "Cloud Functions"],
     href: "https://apps.apple.com/ca/app/tagged/id6749673242",
-    image:
-      "/tagged.png",
+    image: taggedImg
   },
   {
     title: "Jobflow — AI Resume Customizer",
     desc: "Chrome extension and dashboard that customizes resumes & cover letters.",
     tags: ["PM", "React", "Chrome Extension"],
     href: "https://www.myjobflow.com",
-    image:
-      "/jobflow.png",
+    image: jobflowImg
   },
   {
     title: "Peekaboo — AI Visibility Analytics",
     desc: "SaaS for AEO: audits, competitive analysis, and rankings tracking for site search visibility.",
     tags: ["Consulting", "Growth", "AEO"],
     href: "https://www.aipeekaboo.com/",
-    image:
-      "/peekaboo.png",
+    image: peekabooImg
   },
   {
     title: "Produ — SWE Soft-Skills Evaluator",
     desc: "MVP to help managers to help interns level up teamwork, initiative, and communication via a centralized dashboard.",
     tags: ["React", "Supabase", "UI/UX"],
     href: "https://tryprodu.com/",
-    image:
-      "/produ.png",
+    image: produImg
   },
   {
     title: "Visual Cognition Lab — Research Dashboard",
     desc: "The University of British Columbia's main platform for VCL researchers to track & share their progress.",
     tags: ["React", "MongoDB", "Research"],
     href: "https://www.viscoglab.psych.ubc.ca/",
-    image:
-      "/vcl.png",
+    image: vclImg,
   },
 ];
 
@@ -489,7 +492,7 @@ function Hero() {
                  style={{ rotate: r }}
                >
                  <Image
-                    src="/profile1.jpg"
+                    src={profilePic}
                     alt="Nicole — profile"
                     fill
                     className="object-cover"
@@ -561,10 +564,12 @@ function ProjectCard({ p }: { p: (typeof PROJECTS)[number] }) {
       >
         <Card className="rounded-2xl overflow-hidden bg-white/90 backdrop-blur border border-slate-200 transition-transform duration-300 group-hover:-translate-y-0.5">
           <div className="relative h-48 w-full overflow-hidden">
-            <img
-              src={p.image}
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            <Image
+              src={p.image}   // now a StaticImageData from the imports above
+              alt={p.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(min-width: 1024px) 33vw, 50vw"
             />
             <div
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
