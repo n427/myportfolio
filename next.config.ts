@@ -1,14 +1,15 @@
-/** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production'
+// next.config.ts
+import type { NextConfig } from "next";
 
-// If this is a *project page* (https://<you>.github.io/<repo>), set basePath/assetPrefix to "/<repo>" in prod.
-// If this is a *user/organization page* (https://<you>.github.io), leave them empty.
-const base = isProd ? '/<repo>' : ''   // <-- change <repo> to your repo name
+const repo = "portfolio";                           // <-- your repo name
+const isProd = process.env.GITHUB_ACTIONS === "true";
 
-module.exports = {
-  output: 'export',           // build a static site into /out
-  images: { unoptimized: true }, // you used <img>, but this makes Next/Image safe too
-  basePath: base,
-  assetPrefix: base + '/',
-  trailingSlash: true,        // avoids refresh/404 issues on GH Pages
-}
+const nextConfig: NextConfig = {
+  output: "export",                                 // produce /out for GH Pages
+  images: { unoptimized: true },                    // safe for GH Pages
+  basePath: isProd ? `/${repo}` : undefined,        // add /portfolio in prod
+  assetPrefix: isProd ? `/${repo}/` : undefined,    // make _next assets load
+  trailingSlash: true,                              // optional: nicer static paths
+};
+
+export default nextConfig;
