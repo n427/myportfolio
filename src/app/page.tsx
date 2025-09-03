@@ -20,7 +20,15 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+import type { StaticImageData } from "next/image";
 import Image from "next/image";
+
+import profile1 from "@/public/profile1.jpg";
+import tagged   from "@/public/tagged.png";
+import jobflow  from "@/public/jobflow.png";
+import peekaboo from "@/public/peekaboo.png";
+import produ    from "@/public/produ.png";
+import vcl      from "@/public/vcl.png";
 
 const PROJECTS = [
   {
@@ -28,40 +36,35 @@ const PROJECTS = [
     desc: "Social app with server-based tags, streaks, punishments, and a Yearbook archive.",
     tags: ["SwiftUI", "Firebase", "Cloud Functions"],
     href: "https://apps.apple.com/ca/app/tagged/id6749673242",
-    image:
-      "/tagged.png",
+    image: tagged,
   },
   {
     title: "Jobflow — AI Resume Customizer",
     desc: "Chrome extension and dashboard that customizes resumes & cover letters.",
     tags: ["PM", "React", "Chrome Extension"],
     href: "https://www.myjobflow.com",
-    image:
-      "/jobflow.png",
+    image: jobflow,
   },
   {
     title: "Peekaboo — AI Visibility Analytics",
     desc: "SaaS for AEO: audits, competitive analysis, and rankings tracking for site search visibility.",
     tags: ["Consulting", "Growth", "AEO"],
     href: "https://www.aipeekaboo.com/",
-    image:
-      "/peekaboo.png",
+    image: peekaboo,
   },
   {
     title: "Produ — SWE Soft-Skills Evaluator",
     desc: "MVP to help managers to help interns level up teamwork, initiative, and communication via a centralized dashboard.",
     tags: ["React", "Supabase", "UI/UX"],
     href: "https://tryprodu.com/",
-    image:
-      "/produ.png",
+    image: produ,
   },
   {
     title: "Visual Cognition Lab — Research Dashboard",
     desc: "The University of British Columbia's main platform for VCL researchers to track & share their progress.",
     tags: ["React", "MongoDB", "Research"],
     href: "https://www.viscoglab.psych.ubc.ca/",
-    image:
-      "/vcl.png",
+    image: vcl,
   },
 ];
 
@@ -489,7 +492,7 @@ function Hero() {
                  style={{ rotate: r }}
                >
                  <Image
-                    src="/profile1.jpg"
+                    src={profile1}
                     alt="Nicole — profile"
                     fill
                     className="object-cover"
@@ -561,10 +564,12 @@ function ProjectCard({ p }: { p: (typeof PROJECTS)[number] }) {
       >
         <Card className="rounded-2xl overflow-hidden bg-white/90 backdrop-blur border border-slate-200 transition-transform duration-300 group-hover:-translate-y-0.5">
           <div className="relative h-48 w-full overflow-hidden">
-            <img
+            <Image
               src={p.image}
-              alt=""
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              alt={p.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
             />
             <div
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -647,9 +652,7 @@ function Footer() {
       <div className="mx-auto max-w-2xl">
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-slate-900 text-white hover:bg-slate-800">
-            <a href="mailto:nicolexzha@gmail.com">
-              <Mail className="mr-2 h-4 w-4" /> nicolexzha@gmail.com
-            </a>
+            <Mail className="mr-2 h-4 w-4" /> nicolexzha@gmail.com
           </Button>
           <Button
             asChild
